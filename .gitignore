@@ -60,3 +60,6 @@ typings/
 .cache
 
 *.zip
+# Build artifacts
+*.zip
+schemas/gschemas.compiled

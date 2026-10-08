@@ -1,5 +1,9 @@
 # Gnome Timezones Extension
-Show multiple clocks in the panel. 
+Show multiple clocks in the panel.
+
+> **Fork note:** this fork ports the extension to the GNOME Shell 45+ ESM /
+> `Extension` class API. It is tested on **GNOME Shell 50**. For GNOME 42 and
+> older, use [the original extension](https://github.com/Masquerade-Circus/gnome-timezones-extension).
 
 For those who need more than one additional clock, this extension makes very easy to add two, three or more clocks to the main panel area.
 
@@ -10,9 +14,8 @@ There is already an excellent [MultiClock](https://github.com/mibus/MultiClock) 
   - [Table of contents](#table-of-contents)
   - [How to use](#how-to-use)
   - [Configuration](#configuration)
+  - [Installation](#installation)
   - [Contributing](#contributing)
-    - [Installation](#installation)
-    - [Yarn](#yarn)
     - [Scripts](#scripts)
   - [Legal](#legal)
 
@@ -32,30 +35,39 @@ There is already an excellent [MultiClock](https://github.com/mibus/MultiClock) 
 - **Show timezone**: Shows the timezone before the time and after the City name if it is shown. Defaults to false.
 - **Clear clocks**: It will deactivate all current active clocks. In case you can't remove a clock, you can use this button to clear all clocks.
 
-## Contributing
+## Installation
 
--   Use prettify and eslint to lint your code.
--   Update the readme with an example if you add or change any functionality.
+Requires GNOME Shell 45 or newer.
 
-### Installation
 ```bash
-$ cd ~/.local/share/gnome-shell/extensions/
-$ git clone git@github.com:Masquerade-Circus/gnome-timezones-extension.git timezones@masquerade-circus.net
+git clone git@github.com:dustin-hawkins/gnome-timezones-extension.git
+cd gnome-timezones-extension
+npm run install:local   # builds the zip and installs it
+npm run enable
 ```
 
-### Yarn  
-This extension use [yarn](https://yarnpkg.com/) as its main ally. So use the `yarn` command to install dependencies and run the scripts.
+Then log out and back in — GNOME Shell only scans for new extensions at session
+start, and on Wayland it cannot be restarted in place.
 
-### Scripts  
-Use the next scripts to easy the developing time: 
+## Contributing
 
-- `yarn dev:source`: Use rollup to watch for changes and rebuild the extension.js file.
-- `yarn watch-log`: Keeps watching the journalctl gnome shell log. 
-- `yarn enable`: To enable the extension.
-- `yarn disable`: To disable the extension.
-- `yarn compile`: To compile the settings schemas.
-- `yarn build`: This build the source, compiles the schemas and makes the distributable zip file.
+The extension is plain ESM and ships its source directly; there is no bundler
+and no runtime dependencies. Edit `extension.js` and `timezones.js` in place.
+
+### Scripts
+
+- `npm run compile`: Compile the settings schemas.
+- `npm run build`: Compile schemas and produce the distributable zip.
+- `npm run install:local`: Build and install into `~/.local/share/gnome-shell/extensions`.
+- `npm run enable` / `npm run disable`: Toggle the extension.
+- `npm run watch-log`: Tail the GNOME Shell journal.
+
+To test changes without logging out, run a nested shell:
+
+```bash
+dbus-run-session -- gnome-shell --devkit --wayland --mode=user
+```
 
 ## Legal
 
-Author: [Masquerade Circus](http://masquerade-circus.net). License [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
+Original author: [Masquerade Circus](http://masquerade-circus.net). GNOME 45+ port maintained in [this fork](https://github.com/dustin-hawkins/gnome-timezones-extension). License [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
