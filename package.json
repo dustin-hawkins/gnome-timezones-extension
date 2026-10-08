@@ -18,12 +18,12 @@
   ],
   "scripts": {
     "compile": "glib-compile-schemas schemas/",
-    "lint": "npm run zip && shexli timezones@masquerade-circus.net.zip",
-    "zip": "rm -f timezones@masquerade-circus.net.zip && zip -r timezones@masquerade-circus.net.zip extension.js timezones.js metadata.json schemas/org.gnome.shell.extensions.timezones.gschema.xml",
+    "lint": "npm run zip && shexli timezones@dustin-hawkins.zip",
+    "zip": "rm -f timezones@dustin-hawkins.zip && zip -r timezones@dustin-hawkins.zip extension.js timezones.js metadata.json schemas/org.gnome.shell.extensions.dustin-hawkins-timezones.gschema.xml",
     "build": "npm run zip",
-    "install:local": "npm run zip && gnome-extensions install --force timezones@masquerade-circus.net.zip",
-    "enable": "gnome-extensions enable timezones@masquerade-circus.net",
-    "disable": "gnome-extensions disable timezones@masquerade-circus.net",
+    "install:local": "npm run zip && gnome-extensions install --force timezones@dustin-hawkins.zip",
+    "enable": "gnome-extensions enable timezones@dustin-hawkins",
+    "disable": "gnome-extensions disable timezones@dustin-hawkins",
     "watch-log": "journalctl -f -o cat /usr/bin/gnome-shell"
   }
 }

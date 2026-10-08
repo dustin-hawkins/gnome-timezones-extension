@@ -1,9 +1,14 @@
 # Gnome Timezones Extension
 Show multiple clocks in the panel.
 
-> **Fork note:** this fork ports the extension to the GNOME Shell 45+ ESM /
-> `Extension` class API. It is tested on **GNOME Shell 50**. For GNOME 42 and
-> older, use [the original extension](https://github.com/Masquerade-Circus/gnome-timezones-extension).
+> **Based on original work by [Masquerade Circus](https://github.com/Masquerade-Circus).**
+> This is a continuation of [Masquerade-Circus/gnome-timezones-extension](https://github.com/Masquerade-Circus/gnome-timezones-extension),
+> ported to the GNOME Shell 45+ ESM / `Extension` class API and tested on **GNOME Shell 50**.
+> For GNOME 42 and older, use the original extension.
+>
+> It is published as a separate extension (UUID `timezones@dustin-hawkins`) with its own settings,
+> so it does not share saved clocks with the original. If you are switching from the original,
+> disable it and re-add your clocks here.
 
 For those who need more than one additional clock, this extension makes very easy to add two, three or more clocks to the main panel area.
 
@@ -17,6 +22,7 @@ There is already an excellent [MultiClock](https://github.com/mibus/MultiClock) 
   - [Installation](#installation)
   - [Contributing](#contributing)
     - [Scripts](#scripts)
+  - [Credits](#credits)
   - [Legal](#legal)
 
 ## How to use
@@ -66,9 +72,18 @@ and no runtime dependencies. Edit `extension.js` and `timezones.js` in place.
 To test changes without logging out, run a nested shell:
 
 ```bash
-dbus-run-session -- gnome-shell --devkit --wayland --mode=user
+dbus-run-session -- gnome-shell --devkit --wayland --mode=user --unsafe-mode
 ```
+
+## Credits
+
+This extension was created by [Masquerade Circus](http://masquerade-circus.net) as
+[gnome-timezones-extension](https://github.com/Masquerade-Circus/gnome-timezones-extension). The
+design, UI and timezone handling are their work; this repository ports it to modern GNOME Shell
+and maintains it going forward.
 
 ## Legal
 
-Original author: [Masquerade Circus](http://masquerade-circus.net). GNOME 45+ port maintained in [this fork](https://github.com/dustin-hawkins/gnome-timezones-extension). License [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
+Original work © [Masquerade Circus](http://masquerade-circus.net). GNOME 45+ port by
+[Dustin Hawkins](https://github.com/dustin-hawkins). Licensed under
+[Apache-2.0](https://opensource.org/licenses/Apache-2.0), same as the original.

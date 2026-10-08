@@ -8,12 +8,12 @@ A GNOME Shell panel extension showing multiple timezone clocks. This is a fork o
 [Masquerade-Circus/gnome-timezones-extension](https://github.com/Masquerade-Circus/gnome-timezones-extension),
 ported from the GNOME 42 era to the **GNOME 45+ ESM / `Extension` class API**. Verified on GNOME Shell 50.1.
 
-UUID: `timezones@masquerade-circus.net`
+UUID: `timezones@dustin-hawkins`
 
 ## Commands
 
 ```bash
-npm run build          # produce timezones@masquerade-circus.net.zip
+npm run build          # produce timezones@dustin-hawkins.zip
 npm run lint           # build + run the shexli EGO static analyzer (must report "clean")
 npm run install:local  # build, install to ~/.local/share/gnome-shell/extensions, compile schemas
 npm run watch-log      # tail the GNOME Shell journal
@@ -49,11 +49,11 @@ Query state and drive the UI over the nested session's bus:
 
 ```bash
 gdbus call --session --dest org.gnome.Shell.Extensions --object-path /org/gnome/Shell/Extensions \
-  --method org.gnome.Shell.Extensions.GetExtensionInfo "timezones@masquerade-circus.net"
+  --method org.gnome.Shell.Extensions.GetExtensionInfo "timezones@dustin-hawkins"
 # state: 1 = ENABLED, 2 = DISABLED, 3 = ERROR; check the 'error' field too
 
 gdbus call --session --dest org.gnome.Shell --object-path /org/gnome/Shell \
-  --method org.gnome.Shell.Eval 'Main.panel.statusArea["timezones@masquerade-circus.net"]._label.text'
+  --method org.gnome.Shell.Eval 'Main.panel.statusArea["timezones@dustin-hawkins"]._label.text'
 ```
 
 Shell JS is compiled into the gnome-shell binary and is **not** extractable with `gresource` on this
@@ -93,9 +93,10 @@ Do not reintroduce a build step — edit `extension.js` and `timezones.js` in pl
 
 ### Settings
 
-The schema **id** is `org.gnome.shell.extensions.timezones` (plural) but its **path** is
-`/org/gnome/shell/extensions/timezone/` (singular). This mismatch is inherited from upstream and is
-load-bearing for existing users' saved data — do not "fix" it.
+The schema id is `org.gnome.shell.extensions.dustin-hawkins-timezones`, stored at
+`/org/gnome/shell/extensions/dustin-hawkins-timezones/`. It is deliberately distinct from upstream's
+(`org.gnome.shell.extensions.timezones` at `.../timezone/`) so the two extensions don't share saved
+data. Once published, do not change the id or path — users' saved clocks live there.
 
 `metadata.json`'s `settings-schema` must be the schema id. Upstream had the uuid there, which broke
 `getSettings()`.

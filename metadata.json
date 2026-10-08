@@ -1,9 +1,9 @@
 {
   "name": "Timezones extension",
   "description": "Show multiple clocks in the panel. For those who need more than one additional clock.",
-  "uuid": "timezones@masquerade-circus.net",
-  "settings-schema": "org.gnome.shell.extensions.timezones",
+  "uuid": "timezones@dustin-hawkins",
+  "settings-schema": "org.gnome.shell.extensions.dustin-hawkins-timezones",
   "shell-version": ["45", "46", "47", "48", "49", "50"],
   "url": "https://github.com/dustin-hawkins/gnome-timezones-extension",
-  "version": 7
+  "version": 1
 }
