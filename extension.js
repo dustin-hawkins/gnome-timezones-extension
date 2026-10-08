@@ -79,16 +79,15 @@ class TimezonesIndicator extends PanelMenu.Button {
         this._buildMenu();
         this._updateLabel();
 
+        // connectObject() ties the handler's lifetime to this actor, so it is
+        // disconnected automatically when the indicator is destroyed.
         this._wallClock = new GnomeDesktop.WallClock();
-        this._wallClockId = this._wallClock.connect('notify::clock',
-            () => this._updateLabel());
+        this._wallClock.connectObject('notify::clock',
+            () => this._updateLabel(), this);
     }
 
     _onDestroy() {
-        if (this._wallClockId) {
-            this._wallClock.disconnect(this._wallClockId);
-            this._wallClockId = 0;
-        }
+        this._wallClock?.disconnectObject(this);
         this._wallClock = null;
         this._settings = null;
 
@@ -139,14 +138,14 @@ class TimezonesIndicator extends PanelMenu.Button {
         configSection.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         configSection.addAction('Clear clocks', () => this._clearClocks());
 
-        this.menu.connect('open-state-changed', (menu, open) => {
+        this.menu.connectObject('open-state-changed', (menu, open) => {
             if (!open)
                 return;
 
             this._entry.set_text('');
             this._filter = '';
             this._refreshMenu();
-        });
+        }, this);
     }
 
     _createConfigSwitch(name, label) {

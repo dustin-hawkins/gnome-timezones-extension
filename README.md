@@ -56,11 +56,12 @@ and no runtime dependencies. Edit `extension.js` and `timezones.js` in place.
 
 ### Scripts
 
-- `npm run compile`: Compile the settings schemas.
+- `npm run compile`: Compile the settings schemas locally (`gnome-extensions install` does this for you).
 - `npm run build`: Compile schemas and produce the distributable zip.
 - `npm run install:local`: Build and install into `~/.local/share/gnome-shell/extensions`.
 - `npm run enable` / `npm run disable`: Toggle the extension.
 - `npm run watch-log`: Tail the GNOME Shell journal.
+- `npm run lint`: Build the zip and check it with the [Shexli](https://pypi.org/project/shexli/) static analyzer used in EGO review.
 
 To test changes without logging out, run a nested shell:
 
